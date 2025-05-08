@@ -15,7 +15,7 @@ export const genre = {
     mystery: 'Mystery',
     news: 'News',
     romance: 'Romance',
-    scifi: 'Scifi',
+    scifi: 'Sci-fi',
     sport: 'Sport',
     thriller: 'Thriller',
     war: 'War',

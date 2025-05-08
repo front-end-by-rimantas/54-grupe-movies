@@ -23,6 +23,7 @@ export class PageTemplate {
         const menu = [
             { href: '/', text: 'Home' },
             { href: '/movies', text: 'Movies' },
+            { href: '/movies-by-category', text: 'Categories' },
             { href: '/login', text: 'Login' },
             { href: '/register', text: 'Register' },
         ];
