@@ -16,17 +16,27 @@ export class PageTemplate {
                 <meta name="apple-mobile-web-app-title" content="Projekto pavadinimas" />
                 <link rel="manifest" href="/favicon/site.webmanifest" />
                 <link rel="stylesheet" href="/css/bootstrap.min.css">
+                <link rel="stylesheet" href="/css/custom.css">
             </head>`;
     }
 
     header() {
-        const menu = [
+        const userIsLoggedIn = false;
+
+        const publicMenu = [
             { href: '/', text: 'Home' },
             { href: '/movies', text: 'Movies' },
             { href: '/movies-by-category', text: 'Categories' },
+        ];
+        const authMenu = [
             { href: '/login', text: 'Login' },
             { href: '/register', text: 'Register' },
         ];
+        const userMenu = [
+            { href: '/dashboard', text: 'Dashboard' },
+            { href: '/logout', text: 'Logout' },
+        ];
+        const menu = publicMenu.concat(userIsLoggedIn ? userMenu : authMenu);
 
         let menuHTML = '';
 
