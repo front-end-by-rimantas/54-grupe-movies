@@ -17,7 +17,7 @@ export class PageMovies extends PageTemplate {
                 HTML += `
                     <div class="col">
                         <div class="card shadow-sm">
-                            <img src="/img/${item.thumbnail}" class="card-img-top" style="height: 225px;">
+                            <img src="/img/movie-thumbnails/${item.thumbnail}" class="movie-card-thumbnail card-img-top" style="height: 225px;">
                             <div class="card-body">
                                 <a href="/movies/${item.slug}" class="h4">${item.title}</a>
                                 <p class="card-text">${item.description}</p>
