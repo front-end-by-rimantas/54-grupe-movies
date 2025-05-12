@@ -1,6 +1,7 @@
 export class PageTemplate {
     constructor() {
         this.activeMenuIndex = -1;
+        this.pageJS = '';
     }
 
     head() {
@@ -95,6 +96,14 @@ export class PageTemplate {
             </div>`;
     }
 
+    script() {
+        if (this.pageJS) {
+            return `<script src="/js/${this.pageJS}.js"></script>`;
+        } else {
+            return '';
+        }
+    }
+
     render() {
         return `
             <!DOCTYPE html>
@@ -104,7 +113,7 @@ export class PageTemplate {
                 ${this.header()}
                 ${this.main()}
                 ${this.footer()}
-                <script src="/js/main.js"></script>
+                ${this.script()}
             </body>
             </html>`;
     }
