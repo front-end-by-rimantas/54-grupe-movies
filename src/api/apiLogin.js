@@ -1,7 +1,7 @@
 import { usersData } from "../data/users.js";
 import { IsValid } from "../lib/IsValid.js";
 
-export function apiRegister(req, res) {
+export function apiLogin(req, res) {
     const [err, msg] = IsValid.requiredFields(req.body, [
         { field: 'email', validation: IsValid.email },
         { field: 'password', validation: IsValid.password },
@@ -17,27 +17,21 @@ export function apiRegister(req, res) {
     let userExists = false;
 
     for (const user of usersData) {
-        if (user.email === req.body.email) {
+        if (user.email === req.body.email && user.password === req.body.password) {
             userExists = true;
             break;
         }
     }
 
-    if (userExists) {
+    if (!userExists) {
         return res.json({
             status: 'error',
-            msg: 'Toks vartotojas jau egzistuoja',
+            msg: 'Neteisinga el pasto ir slaptazodzio kombinacija, arba toks vartotojas neegzistuoja',
         });
     }
 
-    usersData.push({
-        id: usersData.length + 1,
-        ...req.body,
-        createdAt: new Date(),
-    });
-
     return res.json({
         status: 'success',
-        msg: 'Sekminga registracija',
+        msg: 'Jus buvote sekmingai prijungti prie sistemos',
     });
 }

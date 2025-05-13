@@ -1,5 +1,6 @@
 export class PageTemplate {
-    constructor() {
+    constructor(req) {
+        this.req = req;
         this.activeMenuIndex = -1;
         this.pageJS = '';
     }
@@ -105,6 +106,8 @@ export class PageTemplate {
     }
 
     render() {
+        console.log(this.req.headers.cookie);
+
         return `
             <!DOCTYPE html>
             <html lang="en">

@@ -14,7 +14,7 @@ if (formDOM) {
             password: passwordDOM.value,
         };
 
-        fetch('/api/register', {
+        fetch('/api/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

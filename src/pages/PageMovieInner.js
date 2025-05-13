@@ -4,8 +4,7 @@ import { PageTemplate } from "../templates/PageTemplate.js";
 
 export class PageMovieInner extends PageTemplate {
     constructor(req) {
-        super();
-        this.req = req;
+        super(req);
         this.activeMenuIndex = 1;
     }
 
