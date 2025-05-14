@@ -1,8 +1,6 @@
 export function apiLogout(req, res) {
-    console.log('--------------------');
-
     const cookie = [
-        'loginToken=5fs12af5s4',
+        'loginToken=',
         'domain=localhost',
         'path=/',
         'max-age=-1',

@@ -7,6 +7,7 @@ if (formDOM) {
         fetch('/api/logout', {
             method: 'GET',
         })
+            .then(() => location.href = '/')
             .catch(err => console.log(err));
     });
 }

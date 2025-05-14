@@ -1,5 +1,6 @@
 import { usersData } from "../data/users.js";
 import { IsValid } from "../lib/IsValid.js";
+import { randomString } from "../lib/randomString.js";
 
 export function apiLogin(req, res) {
     const [err, msg] = IsValid.requiredFields(req.body, [
@@ -31,7 +32,7 @@ export function apiLogin(req, res) {
     }
 
     const cookie = [
-        'loginToken=5fs12af5s4',
+        'loginToken=' + randomString(20),
         'domain=localhost',
         'path=/',
         'max-age=3600',
