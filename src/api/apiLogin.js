@@ -30,8 +30,20 @@ export function apiLogin(req, res) {
         });
     }
 
-    return res.json({
-        status: 'success',
-        msg: 'Jus buvote sekmingai prijungti prie sistemos',
-    });
+    const cookie = [
+        'loginToken=5fs12af5s4',
+        'domain=localhost',
+        'path=/',
+        'max-age=3600',
+        'Same-Site=Lax',
+        'Secure',
+        'HttpOnly',
+    ];
+
+    return res
+        .set('Set-Cookie', cookie.join('; '))
+        .json({
+            status: 'success',
+            msg: 'Jus buvote sekmingai prijungti prie sistemos',
+        });
 }

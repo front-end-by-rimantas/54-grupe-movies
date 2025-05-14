@@ -12,7 +12,7 @@ export class PageMovies extends PageTemplate {
         let HTML = '';
 
         for (const item of moviesData) {
-            if (item.category === category || category === 'All movies') {
+            if (item.category.toLowerCase() === category || category === '') {
                 HTML += `
                     <div class="col">
                         <div class="card shadow-sm">
@@ -70,7 +70,7 @@ export class PageMovies extends PageTemplate {
                         </div>
                     </div>
                 </div>
-                ${this.moviesList(title)}
+                ${this.moviesList(category)}
             </main>`;
     }
 }
