@@ -7,7 +7,7 @@ export class PageCategories extends PageTemplate {
         this.activeMenuIndex = 2;
     }
 
-    main() {
+    async main() {
         return `
             <main>
                 <div class="container">
