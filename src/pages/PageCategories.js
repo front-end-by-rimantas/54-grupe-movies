@@ -1,4 +1,5 @@
 import { categoriesList } from "../components/categoriesList.js";
+import { getAllCategories } from "../db/getAllCategories.js";
 import { PageTemplate } from "../templates/PageTemplate.js";
 
 export class PageCategories extends PageTemplate {
@@ -8,6 +9,8 @@ export class PageCategories extends PageTemplate {
     }
 
     async main() {
+        const data = await getAllCategories();
+
         return `
             <main>
                 <div class="container">
@@ -35,7 +38,7 @@ export class PageCategories extends PageTemplate {
                         }
                     </style>
                     <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
-                        ${categoriesList()}
+                        ${categoriesList(data)}
                     </div>
                 </div>
             </main>`;

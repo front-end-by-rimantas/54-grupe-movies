@@ -4,6 +4,7 @@ export class PageLogin extends PageTemplate {
     constructor(req) {
         super(req);
         this.pageJS = 'login';
+        this.activeMenuIndex = 3;
     }
 
     async main() {

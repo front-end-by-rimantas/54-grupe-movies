@@ -1,4 +1,3 @@
-import { moviesData } from "../data/movies.js";
 import { getMovieBySlug } from "../db/getMovieBySlug.js";
 import { formatMovieDuration } from "../lib/formatMovieDuration.js";
 import { PageTemplate } from "../templates/PageTemplate.js";

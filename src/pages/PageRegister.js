@@ -4,6 +4,7 @@ export class PageRegister extends PageTemplate {
     constructor(req) {
         super(req);
         this.pageJS = 'register';
+        this.activeMenuIndex = 4;
     }
 
     async main() {
