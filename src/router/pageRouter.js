@@ -8,6 +8,7 @@ import { PageRegister } from '../pages/PageRegister.js';
 import { PageLogin } from '../pages/PageLogin.js';
 import { PageLogout } from '../pages/PageLogout.js';
 import { PageCategoryInner } from '../pages/PageCategoryInner.js';
+import { PageDashboard } from '../pages/PageDashboard.js';
 
 export const pageRouter = express.Router();
 
@@ -20,5 +21,7 @@ pageRouter.get('/movies-by-category/:categoryName', async (req, res) => res.send
 pageRouter.get('/register', async (req, res) => res.send(await (new PageRegister(req)).render()));
 pageRouter.get('/login', async (req, res) => res.send(await (new PageLogin(req)).render()));
 pageRouter.get('/logout', async (req, res) => res.send(await (new PageLogout(req)).render()));
+
+pageRouter.get('/dashboard', async (req, res) => res.send(await (new PageDashboard(req)).render()));
 
 pageRouter.get('*error', async (req, res) => res.send(await (new Page404(req)).render()));
