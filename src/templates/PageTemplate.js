@@ -23,8 +23,6 @@ export class PageTemplate {
     }
 
     header() {
-        const userIsLoggedIn = this.req.headers.cookie !== undefined;
-
         const publicMenu = [
             { href: '/', text: 'Home' },
             { href: '/movies', text: 'Movies' },
@@ -38,7 +36,7 @@ export class PageTemplate {
             { href: '/dashboard', text: 'Dashboard' },
             { href: '/logout', text: 'Logout' },
         ];
-        const menu = publicMenu.concat(userIsLoggedIn ? userMenu : authMenu);
+        const menu = publicMenu.concat(this.req.user.isLoggedIn ? userMenu : authMenu);
 
         let menuHTML = '';
 

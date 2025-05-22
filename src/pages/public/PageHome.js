@@ -1,5 +1,5 @@
-import { categoriesList } from "../components/categoriesList.js";
-import { PageTemplate } from "../templates/PageTemplate.js";
+import { categoriesList } from "../../components/categoriesList.js";
+import { PageTemplate } from "../../templates/PageTemplate.js";
 
 export class PageHome extends PageTemplate {
     constructor(req) {
