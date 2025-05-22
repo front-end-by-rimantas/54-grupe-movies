@@ -8,16 +8,50 @@ export class PageDashboard extends PageAdminTemplate {
 
     async main() {
         return `
-            <main>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12">
-                            <h1 class="display-1">Dashboard</h1>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <p class="col-12">Your email: ${this.req.user.email}</p>
-                    </div>
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <h1 class="h2">Section title</h1>
+                <div class="table-responsive small">
+                    <table class="table table-striped table-sm">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Header</th>
+                                <th scope="col">Header</th>
+                                <th scope="col">Header</th>
+                                <th scope="col">Header</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1,001</td>
+                                <td>random</td>
+                                <td>data</td>
+                                <td>placeholder</td>
+                                <td>text</td>
+                            </tr>
+                            <tr>
+                                <td>1,002</td>
+                                <td>placeholder</td>
+                                <td>irrelevant</td>
+                                <td>visual</td>
+                                <td>layout</td>
+                            </tr>
+                            <tr>
+                                <td>1,003</td>
+                                <td>data</td>
+                                <td>rich</td>
+                                <td>dashboard</td>
+                                <td>tabular</td>
+                            </tr>
+                            <tr>
+                                <td>1,003</td>
+                                <td>information</td>
+                                <td>placeholder</td>
+                                <td>illustrative</td>
+                                <td>data</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </main>`;
     }
