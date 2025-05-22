@@ -1,3 +1,4 @@
+import { NODE_ENV } from "../env.js";
 import { PageTemplate } from "../templates/PageTemplate.js";
 
 export class PageLogin extends PageTemplate {
@@ -8,6 +9,9 @@ export class PageLogin extends PageTemplate {
     }
 
     async main() {
+        const email = NODE_ENV === 'dev' ? 'chuck@norris.lt' : '';
+        const password = NODE_ENV === 'dev' ? 'chuck@norris.lt' : '';
+
         return `
             <main>
                 <div class="container">
@@ -19,11 +23,11 @@ export class PageLogin extends PageTemplate {
                             </div>
                             <form>
                                 <div class="form-floating">
-                                    <input type="email" class="form-control" id="email" placeholder="name@example.com">
+                                    <input type="email" value="${email}" class="form-control" id="email" placeholder="name@example.com">
                                     <label for="email">Email address</label>
                                 </div>
                                 <div class="form-floating">
-                                    <input type="password" class="form-control" id="password" placeholder="Password">
+                                    <input type="password" value="${password}" class="form-control" id="password" placeholder="Password">
                                     <label for="password">Password</label>
                                 </div>
                                 <button class="btn btn-primary w-100 py-2" type="submit">Login</button>
