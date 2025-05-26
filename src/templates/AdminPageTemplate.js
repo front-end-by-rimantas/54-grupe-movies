@@ -8,22 +8,6 @@ export class AdminPageTemplate extends PageTemplate {
         this.isPublicPage = false;
     }
 
-    notLoggedInContent() {
-        return `
-            <main>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12">
-                            <h1 class="display-1">Error: private page</h1>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <a class="btn btn-primary" href="/login">Login</a>
-                    </div>
-                </div>
-            </main>`;
-    }
-
     adminSidebar() {
         return `
             <div class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary">
@@ -34,7 +18,7 @@ export class AdminPageTemplate extends PageTemplate {
                     <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="/admin/dashboard">
+                                <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="/admin">
                                     Dashboard
                                 </a>
                             </li>
@@ -53,6 +37,16 @@ export class AdminPageTemplate extends PageTemplate {
                                     All categories
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link d-flex align-items-center gap-2" href="/admin/categories/published">
+                                    Published categories
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link d-flex align-items-center gap-2" href="/admin/categories/draft">
+                                    Draft categories
+                                </a>
+                            </li>
                         </ul>
                         <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-body-secondary text-uppercase">
                             <span>Movies</span>
@@ -66,6 +60,16 @@ export class AdminPageTemplate extends PageTemplate {
                             <li class="nav-item">
                                 <a class="nav-link d-flex align-items-center gap-2" href="/admin/movies">
                                     All movies
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link d-flex align-items-center gap-2" href="/admin/movies/published">
+                                    Published movies
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link d-flex align-items-center gap-2" href="/admin/movies/draft">
+                                    Draft movies
                                 </a>
                             </li>
                         </ul>
@@ -82,16 +86,6 @@ export class AdminPageTemplate extends PageTemplate {
             </div>`;
     }
 
-    async adminContent() {
-        return `
-            <div class="container-fluid">
-                <div class="row">
-                    ${this.adminSidebar()}
-                    ${await this.main()}
-                </div>
-            </div>`;
-    }
-
     async render() {
         return `
             <!DOCTYPE html>
@@ -99,7 +93,12 @@ export class AdminPageTemplate extends PageTemplate {
             ${this.head()}
             <body>
                 ${this.header()}
-                ${this.req.user.isLoggedIn ? await this.adminContent() : this.notLoggedInContent()}
+                <div class="container-fluid">
+                    <div class="row">
+                        ${this.adminSidebar()}
+                        ${await this.main()}
+                    </div>
+                </div>
                 ${this.footer()}
                 ${this.script()}
             </body>
