@@ -1,6 +1,6 @@
 import { PageTemplate } from "./PageTemplate.js";
 
-export class PageAdminTemplate extends PageTemplate {
+export class AdminPageTemplate extends PageTemplate {
     constructor(req) {
         super(req);
         this.activeMenuIndex = -1;
@@ -34,7 +34,7 @@ export class PageAdminTemplate extends PageTemplate {
                     <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="#">
+                                <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="/admin/dashboard">
                                     Dashboard
                                 </a>
                             </li>
@@ -44,12 +44,12 @@ export class PageAdminTemplate extends PageTemplate {
                         </h6>
                         <ul class="nav flex-column mb-auto">
                             <li class="nav-item">
-                                <a class="nav-link d-flex align-items-center gap-2" href="#">
+                                <a class="nav-link d-flex align-items-center gap-2" href="/admin/categories/new">
                                     Add new
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link d-flex align-items-center gap-2" href="#">
+                                <a class="nav-link d-flex align-items-center gap-2" href="/admin/categories">
                                     All categories
                                 </a>
                             </li>
@@ -59,12 +59,12 @@ export class PageAdminTemplate extends PageTemplate {
                         </h6>
                         <ul class="nav flex-column mb-auto">
                             <li class="nav-item">
-                                <a class="nav-link d-flex align-items-center gap-2" href="#">
+                                <a class="nav-link d-flex align-items-center gap-2" href="/admin/movies/new">
                                     Add new
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link d-flex align-items-center gap-2" href="#">
+                                <a class="nav-link d-flex align-items-center gap-2" href="/admin/movies">
                                     All movies
                                 </a>
                             </li>
