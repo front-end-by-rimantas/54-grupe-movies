@@ -1,10 +1,10 @@
-import { connection } from "../db.js";
+import { connection } from "../../db.js";
 
 export async function getAllCategories() {
     try {
         const sql = `
             SELECT *,
-                ( SELECT COUNT(*) FROM movies WHERE movies.category_id = categories.id ) as count
+                ( SELECT COUNT(*) FROM movies WHERE movies.category_id = categories.id ) AS count
             FROM categories
             ORDER BY name;`;
         const [result] = await connection.query(sql);
@@ -19,7 +19,7 @@ export async function getCategoriesDraft() {
     try {
         const sql = `
             SELECT *,
-                ( SELECT COUNT(*) FROM movies WHERE movies.category_id = categories.id ) as count
+                ( SELECT COUNT(*) FROM movies WHERE movies.category_id = categories.id ) AS count
             FROM categories
             WHERE is_published = 0
             ORDER BY name;`;
@@ -35,7 +35,7 @@ export async function getCategoriesPublished() {
     try {
         const sql = `
             SELECT *,
-                ( SELECT COUNT(*) FROM movies WHERE movies.category_id = categories.id ) as count
+                ( SELECT COUNT(*) FROM movies WHERE movies.category_id = categories.id ) AS count
             FROM categories
             WHERE is_published = 1
             ORDER BY name;`;
