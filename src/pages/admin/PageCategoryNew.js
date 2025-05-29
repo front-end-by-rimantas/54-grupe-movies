@@ -1,6 +1,6 @@
 import { AdminPageTemplate } from "../../templates/AdminPageTemplate.js";
 
-export class PageAdminNewCategory extends AdminPageTemplate {
+export class PageAdminCategoryNew extends AdminPageTemplate {
     constructor(req) {
         super(req);
         this.activeMenuIndex = this.req.user.isLoggedIn ? 3 : -1;
