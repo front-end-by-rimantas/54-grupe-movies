@@ -19,8 +19,8 @@ export async function apiCategoriesPost(req, res) {
     const { name, url, description, status } = req.body;
 
     try {
-        const sql = 'SELECT * FROM categories WHERE name = ? AND url_slug = ? AND description = ?;';
-        const [result] = await connection.query(sql, [name, url, description]);
+        const sql = 'SELECT * FROM categories WHERE name = ? OR url_slug = ?;';
+        const [result] = await connection.query(sql, [name, url]);
 
         if (result.length > 0) {
             return res.json({
