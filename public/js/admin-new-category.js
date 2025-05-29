@@ -14,6 +14,7 @@ if (formDOM) {
             name: nameDOM.value,
             url: urlDOM.value,
             description: descriptionDOM.value,
+            status: document.querySelector('[name="status"]:checked').value,
         };
 
         fetch('/api/admin/categories', {
