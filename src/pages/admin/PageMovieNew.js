@@ -5,6 +5,7 @@ export class PageAdminMovieNew extends AdminPageTemplate {
     constructor(req) {
         super(req);
         this.activeMenuIndex = this.req.user.isLoggedIn ? 3 : -1;
+        this.pageJS = 'admin-movie';
     }
 
     async main() {
@@ -22,15 +23,15 @@ export class PageAdminMovieNew extends AdminPageTemplate {
                     <div class="row g-3">
                         <div class="col-12">
                             <label for="thumbnail" class="form-label">Thumbnail</label>
-                            <input class="form-control" id="thumbnail" type="file">
+                            <input class="form-control" id="thumbnail" type="file" required>
                             <div class="invalid-feedback">
                                 Valid image is required.
                             </div>
                         </div>
-                        <img class="col-12" style="max-height: 20rem; object-fit: contain;" src="/img/default.webp" alt="">
+                        <img id="image" class="col-12" style="max-height: 20rem; object-fit: contain;" src="/img/default.webp" alt="">
                     </div>
                 </form>
-                <form action="/api/admin/categories" data-method="POST" class="needs-validation col-12 col-md-10 col-lg-8 col-xl-6">
+                <form action="/api/admin/movies" data-method="POST" class="needs-validation col-12 col-md-10 col-lg-8 col-xl-6">
                     <div class="row g-3">
                         <div class="col-sm-12">
                             <label for="name" class="form-label">Movie name</label>
@@ -48,7 +49,7 @@ export class PageAdminMovieNew extends AdminPageTemplate {
                         </div>
                         <div class="col-sm-12">
                             <label for="description" class="form-label">Description</label>
-                            <textarea class="form-control" id="description" placeholder="" required></textarea>
+                            <textarea class="form-control" id="description" placeholder=""></textarea>
                             <div class="invalid-feedback">
                                 Valid description is required.
                             </div>
@@ -56,24 +57,15 @@ export class PageAdminMovieNew extends AdminPageTemplate {
                         <p class="col-sm-12 mb-0">Duration:</p>
                         <div class="col-sm-6">
                             <label for="duration_hours" class="form-label">hours</label>
-                            <input type="text" class="form-control" id="duration_hours" placeholder="" value="0" required>
-                            <div class="invalid-feedback">
-                                Valid duration is required.
-                            </div>
+                            <input type="number" min="0" max="10" step="1" class="form-control" id="duration_hours" placeholder="" value="0">
                         </div>
                         <div class="col-sm-6">
-                            <label for="duration_hours" class="form-label">minutes</label>
-                            <input type="text" class="form-control" id="duration_hours" placeholder="" value="0" required>
-                            <div class="invalid-feedback">
-                                Valid duration is required.
-                            </div>
+                            <label for="duration_minutes" class="form-label">minutes</label>
+                            <input type="number" min="0" max="59" step="1" class="form-control" id="duration_minutes" placeholder="" value="0">
                         </div>
                         <div class="col-12 col-sm-6">
                             <label for="category" class="form-label">Genre</label>
                             <select class="form-control" id="category">${categoriesHTML}</select>
-                            <div class="invalid-feedback">
-                                Valid category is required.
-                            </div>
                         </div>
                         <div class="my-3">
                             <div class="form-check">
