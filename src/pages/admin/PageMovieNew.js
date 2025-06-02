@@ -1,20 +1,39 @@
+import { getAllCategories } from "../../db/admin/categories.js";
 import { AdminPageTemplate } from "../../templates/AdminPageTemplate.js";
 
-export class PageAdminCategoryNew extends AdminPageTemplate {
+export class PageAdminMovieNew extends AdminPageTemplate {
     constructor(req) {
         super(req);
         this.activeMenuIndex = this.req.user.isLoggedIn ? 3 : -1;
-        this.pageJS = 'admin-category';
     }
 
     async main() {
+        const categories = await getAllCategories();
+
+        let categoriesHTML = '<option value="0">-- select category</option>';
+        for (const cat of categories) {
+            categoriesHTML += `<option value="${cat.id}">${cat.name}</option>`;
+        }
+
         return `
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-                <h1 class="h2">New category</h1>
+                <h1 class="h2">New movie</h1>
+                <form action="/api/admin/upload" data-method="POST" class="needs-validation col-12 col-md-10 col-lg-8 col-xl-6 mb-3">
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <label for="thumbnail" class="form-label">Thumbnail</label>
+                            <input class="form-control" id="thumbnail" type="file">
+                            <div class="invalid-feedback">
+                                Valid image is required.
+                            </div>
+                        </div>
+                        <img class="col-12" style="max-height: 20rem; object-fit: contain;" src="/img/default.webp" alt="">
+                    </div>
+                </form>
                 <form action="/api/admin/categories" data-method="POST" class="needs-validation col-12 col-md-10 col-lg-8 col-xl-6">
                     <div class="row g-3">
                         <div class="col-sm-12">
-                            <label for="name" class="form-label">Category name</label>
+                            <label for="name" class="form-label">Movie name</label>
                             <input type="text" class="form-control" id="name" placeholder="" value="" required>
                             <div class="invalid-feedback">
                                 Valid first name is required.
@@ -32,6 +51,28 @@ export class PageAdminCategoryNew extends AdminPageTemplate {
                             <textarea class="form-control" id="description" placeholder="" required></textarea>
                             <div class="invalid-feedback">
                                 Valid description is required.
+                            </div>
+                        </div>
+                        <p class="col-sm-12 mb-0">Duration:</p>
+                        <div class="col-sm-6">
+                            <label for="duration_hours" class="form-label">hours</label>
+                            <input type="text" class="form-control" id="duration_hours" placeholder="" value="0" required>
+                            <div class="invalid-feedback">
+                                Valid duration is required.
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="duration_hours" class="form-label">minutes</label>
+                            <input type="text" class="form-control" id="duration_hours" placeholder="" value="0" required>
+                            <div class="invalid-feedback">
+                                Valid duration is required.
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            <label for="category" class="form-label">Genre</label>
+                            <select class="form-control" id="category">${categoriesHTML}</select>
+                            <div class="invalid-feedback">
+                                Valid category is required.
                             </div>
                         </div>
                         <div class="my-3">
