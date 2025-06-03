@@ -92,7 +92,7 @@ export class PageAdminMovieEdit extends AdminPageTemplate {
                     </div>
                     <hr class="my-4">
                     <div class="d-flex" style="gap: 1rem;">
-                        <button class="btn btn-success btn-lg" type="submit">Create</button>
+                        <button class="btn btn-success btn-lg" type="submit">Update</button>
                         <button class="btn btn-secondary btn-lg ms-auto" type="reset">Reset</button>
                     </div>
                 </form>
