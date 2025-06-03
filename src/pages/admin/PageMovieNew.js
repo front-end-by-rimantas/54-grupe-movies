@@ -19,11 +19,11 @@ export class PageAdminMovieNew extends AdminPageTemplate {
         return `
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <h1 class="h2">New movie</h1>
-                <form action="/api/admin/upload" data-method="POST" class="needs-validation col-12 col-md-10 col-lg-8 col-xl-6 mb-3">
+                <form action="/api/admin/upload" data-method="POST" enctype="multipart/form-data" class="needs-validation col-12 col-md-10 col-lg-8 col-xl-6 mb-3">
                     <div class="row g-3">
                         <div class="col-12">
                             <label for="thumbnail" class="form-label">Thumbnail</label>
-                            <input class="form-control" id="thumbnail" type="file" required>
+                            <input class="form-control" id="thumbnail" name="thumbnail" type="file" required>
                             <div class="invalid-feedback">
                                 Valid image is required.
                             </div>
