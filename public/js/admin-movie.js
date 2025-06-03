@@ -33,8 +33,8 @@ if (contentFormDOM) {
         if (+durationMinutesDOM.value) {
             data.minutes = +durationMinutesDOM.value;
         }
-        if (categoryDOM.value) {
-            data.category = categoryDOM.value;
+        if (+categoryDOM.value) {
+            data.category = +categoryDOM.value;
         }
 
         const imageURL = new URL(imageDOM.src);

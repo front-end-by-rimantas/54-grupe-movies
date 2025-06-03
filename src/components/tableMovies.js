@@ -1,3 +1,4 @@
+import { formatMovieDuration } from "../lib/formatMovieDuration.js";
 import { Badge } from "./Badge.js";
 
 export function tableMovies(data) {
@@ -14,7 +15,7 @@ export function tableMovies(data) {
                 <td>${item.title}</td>
                 <td>${item.url_slug}</td>
                 <td>${desc}</td>
-                <td>${item.duration}</td>
+                <td>${formatMovieDuration(item.duration)}</td>
                 <td>${status}</td>
                 <td>
                     <div style="display: flex; gap: 0.3rem;">

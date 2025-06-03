@@ -244,9 +244,23 @@ export class IsValid {
         return [false, 'Ok'];
     }
 
-    static includesInList(text, allowedValues) {
-        if (typeof text !== 'string' || text === '' || !allowedValues.includes(text)) {
-            return [true, `Turi buti tinkamas statusas: ${allowedValues.join(', ')}.`];
+    static includesInList(value, allowedValues) {
+        if (!allowedValues.includes(value)) {
+            return [true, `Turi buti viena is leistinu reiksmiu: ${allowedValues.join(', ')}.`];
+        }
+
+        return [false, 'Ok'];
+    }
+
+    static positiveInteger(number) {
+        if (typeof number !== 'number' ||
+            !Number.isInteger(number)
+        ) {
+            return [true, 'Reikalingas sveikasis skaicius'];
+        }
+
+        if (number < 0) {
+            return [true, 'Reikalingas teigiamas sveikasis skaicius'];
         }
 
         return [false, 'Ok'];
