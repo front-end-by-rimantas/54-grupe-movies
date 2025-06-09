@@ -35,7 +35,7 @@ export async function apiMoviesPost(req, res) {
 
     try {
         const sql = 'SELECT * FROM movies WHERE title = ? OR url_slug = ?;';
-        const [result] = await connection.query(sql, [name, url]);
+        const [result] = await connection.execute(sql, [name, url]);
 
         if (result.length > 0) {
             return res.json({
@@ -56,7 +56,7 @@ export async function apiMoviesPost(req, res) {
             INSERT INTO movies 
                 (title, url_slug, thumbnail, description, duration, category_id, is_published)
             VALUES (?, ?, ?, ?, ?, ?, ?);`;
-        const [result] = await connection.query(sql, [name, url, imageFileName, description, duration, category, statusIndex]);
+        const [result] = await connection.execute(sql, [name, url, imageFileName, description, duration, category, statusIndex]);
 
         if (result.affectedRows !== 1) {
             return res.json({
