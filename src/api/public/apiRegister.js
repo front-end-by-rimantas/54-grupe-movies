@@ -1,6 +1,7 @@
 import { connection } from "../../db.js";
 import { hash } from "../../lib/hash.js";
 import { IsValid } from "../../lib/IsValid.js";
+import { randomString } from "../../lib/randomString.js";
 
 export async function apiRegister(req, res) {
     const [err, msg] = IsValid.requiredFields(req.body, [
@@ -31,7 +32,8 @@ export async function apiRegister(req, res) {
         console.log(error);
     }
 
-    const hashedPassword = hash(password);
+    const salt = randomString();
+    const hashedPassword = hash(password, salt);
 
     if (hashedPassword === '') {
         return res.json({
@@ -41,8 +43,8 @@ export async function apiRegister(req, res) {
     }
 
     try {
-        const sql = 'INSERT INTO users (email, password_hash) VALUES (?, ?);';
-        const [result] = await connection.execute(sql, [email, hashedPassword]);
+        const sql = 'INSERT INTO users (email, password_hash, salt) VALUES (?, ?, ?);';
+        const [result] = await connection.execute(sql, [email, hashedPassword, salt]);
 
         if (result.affectedRows !== 1) {
             return res.json({

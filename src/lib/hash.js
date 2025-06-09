@@ -1,8 +1,8 @@
 import crypto from 'crypto';
 
-export function hash(text) {
+export function hash(text, salt) {
     try {
-        return crypto.createHash('sha512').update(text).digest('hex');
+        return crypto.createHash('sha512').update(text + salt).digest('hex');
     } catch (error) {
         return '';
     }

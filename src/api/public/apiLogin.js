@@ -19,18 +19,9 @@ export async function apiLogin(req, res) {
     const { email, password } = req.body;
     let userObj = null;
 
-    const hashedPassword = hash(password);
-
-    if (hashedPassword === '') {
-        return res.json({
-            status: 'error',
-            msg: 'Netinkamas slaptazodis',
-        });
-    }
-
     try {
-        const sql = 'SELECT * FROM users WHERE email = ? AND password_hash = ?;';
-        const [result] = await connection.execute(sql, [email, hashedPassword]);
+        const sql = 'SELECT * FROM users WHERE email = ?;';
+        const [result] = await connection.execute(sql, [email]);
 
         if (result.length === 0) {
             return res.json({
@@ -45,6 +36,15 @@ export async function apiLogin(req, res) {
         return res.json({
             status: 'error',
             msg: 'Serverio klaida, pabandykite prisijungti veliau',
+        });
+    }
+
+    const hashedPassword = hash(password, userObj.salt);
+
+    if (hashedPassword !== userObj.password_hash) {
+        return res.json({
+            status: 'error',
+            msg: 'Netinkamas slaptazodis',
         });
     }
 
